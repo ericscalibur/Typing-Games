@@ -17,7 +17,7 @@ SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
 # How fast is the letter falling
-speed = 2
+speed = 5
 
 # Lists of characters
 allcaps = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
@@ -47,7 +47,7 @@ class Letter(pygame.sprite.Sprite):
     def __init__(self):
         super(Letter, self).__init__()
         self.index = i
-        self.char = lowercase[i]
+        self.char = lowercase[random.randint(0, len(lowercase)-1)]
         self.surf = letterFont.render(self.char, True, (255, 0, 0))
         self.rect = self.surf.get_rect(
             center = (random.randint(20, SCREEN_WIDTH - 20),0))
@@ -98,10 +98,6 @@ while running:
     for event in pygame.event.get():
 
         if event.type == TEXTINPUT:
-            if i == 25:
-                letter.rect.bottom = SCREEN_HEIGHT
-                gameover = True
-
 
             if event.text == letter.char and not gameover:
                 letter.kill()
