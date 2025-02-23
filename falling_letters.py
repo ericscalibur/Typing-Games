@@ -36,7 +36,7 @@ pygame.init()
 # Setup the clock for a decent framerate
 clock = pygame.time.Clock()
 t = 0
-i = 0
+
 # System Font
 letterFont = pygame.font.SysFont('Rockwell', 40)
 textFont = pygame.font.SysFont('Rockwell', 20)
@@ -46,7 +46,6 @@ textFont = pygame.font.SysFont('Rockwell', 20)
 class Letter(pygame.sprite.Sprite):
     def __init__(self):
         super(Letter, self).__init__()
-        self.index = i
         self.char = lowercase[random.randint(0, len(lowercase)-1)]
         self.surf = letterFont.render(self.char, True, (255, 0, 0))
         self.rect = self.surf.get_rect(
@@ -101,7 +100,6 @@ while running:
 
             if event.text == letter.char and not gameover:
                 letter.kill()
-                i = i+1
                 letter = Letter()
                 score += 1
                 avgtime = round((avgtime + t/100) / 2, 2)
@@ -111,7 +109,6 @@ while running:
 
         if event.type == TEXTINPUT and gameover:
             if event.text == 'y':
-                i = 0
                 letter.kill()
                 letter = Letter()
                 score = 0
