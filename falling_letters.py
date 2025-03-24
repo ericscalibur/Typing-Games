@@ -15,9 +15,9 @@ from pygame.locals import *
 # Define constants for the screen width and height
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
-
+score = 0
 # How fast is the letter falling
-speed = 5
+speed = 1
 
 # Lists of characters
 allcaps = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
@@ -56,7 +56,7 @@ class Letter(pygame.sprite.Sprite):
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # Create score counter
-score = 0
+
 scoretext = textFont.render("Score: "+str(score), True, (0, 200, 0), (0,0,0))
 
 # Create average time counter
@@ -79,6 +79,8 @@ while running:
 
     # 60 frames per second
     clock.tick(60)
+
+    speed = round(2+ score/2)
 
     # Fill the screen with white
     screen.fill((255, 255, 255))
